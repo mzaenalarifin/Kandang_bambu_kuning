@@ -1,2 +1,2 @@
 # Kandang_bambu_kuning
-Kandang Bambu Kuning adalaahh salahsatu tempat usaha peternakan unggas d8 daerah Karawang Barat, Karawang. Jawa Barat. 
+Kandang Bambu Kuning adalah salahsatu tempat usaha peternakan unggas di daerah Karawang Barat, Karawang. Jawa Barat. 

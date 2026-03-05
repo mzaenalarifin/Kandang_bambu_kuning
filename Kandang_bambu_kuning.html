@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peternakan Entok | Kandang Bambu Kuning</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --primary:##80e972d9;
+    --secondary:#c9a44c;
+    --dark:#1a3729;
+    --light:#f8f9fa;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;overflow-x:hidden}
+body{
+    font-family:'Poppins',sans-serif;
+    background:#3f7737d9;
+    color:var(--light);
+}
+
+/* NAVBAR */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(15,31,23,.97);
+    padding:15px clamp(20px,5vw,60px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    z-index:1000;
+}
+nav h1{color:var(--secondary);font-size:20px}
+nav ul{list-style:none;display:flex;gap:25px}
+nav ul li a{text-decoration:none;color:#fff;font-weight:500}
+nav ul li a:hover{color:var(--secondary)}
+.menu-btn{display:none;font-size:26px;color:#fff;cursor:pointer}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.65)),
+    url('/Entok/umur_4_bulan.png') center/cover;
+    display:flex;
+    align-items:center;
+    padding:clamp(80px,10vw,120px) clamp(20px,6vw,80px);
+}
+.hero h2{font-size:clamp(30px,5vw,52px);color:var(--secondary)}
+.hero p{max-width:600px;margin:20px 0}
+.btn{
+    display:inline-block;
+    padding:12px 32px;
+    background:var(--secondary);
+    color:#000;
+    border-radius:30px;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* SECTION */
+section{
+    padding:clamp(70px,10vw,110px) clamp(20px,6vw,80px);
+}
+.section-title{text-align:center;margin-bottom:60px}
+.section-title h3{
+    font-size:clamp(26px,4vw,36px);
+    color:var(--secondary);
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:30px;
+}
+.card{
+    background:var(--primary);
+    padding:28px;
+    border-radius:16px;
+    transition:.3s;
+}
+.card:hover{transform:translateY(-8px)}
+.card h4{color:var(--secondary)}
+
+/* ABOUT */
+.about{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:40px;
+    align-items:center;
+}
+.about img{width:100%;border-radius:16px}
+
+/* STATS */
+.stat{
+    background:#14261c;
+    padding:40px 20px;
+    border-radius:16px;
+    text-align:center;
+}
+.stat h2{
+    font-size:clamp(32px,5vw,44px);
+    color:var(--secondary);
+}
+
+/* GALLERY */
+.gallery img{width:100%;border-radius:16px}
+
+/* ORDER */
+.contact form{
+    max-width:600px;
+    margin:auto;
+    display:grid;
+    gap:15px;
+}
+.contact input,.contact textarea,.contact select{
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    font-size:14px;
+}
+#total{
+    background:#e6e6e6;
+    color:#000;
+    font-weight:700;
+}
+.contact button{
+    padding:14px;
+    border:none;
+    background:var(--secondary);
+    font-weight:700;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* FOOTER */
+footer{
+    background:#09130d;
+    text-align:center;
+    padding:20px;
+    font-size:14px;
+}
+
+/* FLOATING WA */
+.wa-float{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    background:#25D366;
+    color:#fff;
+    font-size:28px;
+    width:60px;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    text-decoration:none;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    z-index:999;
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.1)}
+    100%{transform:scale(1)}
+}
+
+/* MOBILE */
+@media(max-width:768px){
+    nav ul{
+        position:absolute;
+        top:65px;
+        right:0;
+        background:#0f1f17;
+        width:220px;
+        flex-direction:column;
+        padding:20px;
+        display:none;
+    }
+    nav ul.active{display:flex}
+    .menu-btn{display:block}
+}
+/* SCROLL HALUS */
+html{
+scroll-behavior:smooth;
+}
+
+/* ANIMASI SECTION */
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:all .8s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* LIGHTBOX GALERI */
+.lightbox{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+align-items:center;
+justify-content:center;
+z-index:2000;
+}
+
+.lightbox img{
+max-width:90%;
+max-height:90%;
+border-radius:10px;
+}
+
+.lightbox.show{
+display:flex;
+cursor:pointer;
+}
+
+/* TOMBOL RUTE */
+.map-btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 28px;
+background:#c9a44c;
+color:#000;
+border-radius:30px;
+font-weight:600;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <h1>Kandang Bambu Kuning</h1>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#produk">Produk</a></li>
+        <li><a href="#galeri">Galeri</a></li>
+        <li><a href="#order">Order</a></li>
+    </ul>
+</nav>
+
+<section class="hero" id="home">
+    <div>
+        <h2>Peternakan Entok Modern</h2>
+        <p>Entok sehat dari kandang bambu kuning, dikelola profesional & ramah lingkungan.</p>
+        <a href="#order" class="btn">Order Sekarang</a>
+    </div>
+</section>
+
+<section id="about" class="reveal">
+    <div class="section-title"><h3>Tentang Kami</h3></div>
+    <div class="about">
+        <p>Entok Jumbo Tronton (sering disebut Rambon/Jumbo Blitar) adalah jenis entok unggul dengan postur sangat besar, tinggi 60-75 cm, dan bobot jantan 5-7 kg. Istilah "Tronton" merujuk pada ukurannya yang ekstra besar (sebesar truk tronton), populer karena pertumbuhannya cepat, daging lezat, dan bernilai ekonomis tinggi. Kami fokus pada kualitas pakan, kebersihan kandang, dan manajemen modern.</p>
+        <img src="/Entok/jago.png">
+    </div>
+</section>
+
+<section id="produk" class="reveal">
+    <div class="section-title"><h3>Produk Entok Jumbo</h3></div>
+    <div class="grid">
+        <div class="card">
+          <h4>Entok Konsumsi</h4><p>Rp 200.000 - 300.000 / ekor</p>
+        </div>
+        <div class="card">
+          <h4>Entok Bibit (Umur 1 Minggu)</h4><p>Rp 20.000 / ekor</p> <br>
+          <h4>Entok Bibit (Umur 1 Bulan)</h4><p>Rp 75.000 / ekor</p><br>
+          <h4>Entok Siap Produksi (Jago)</h4><p>Rp 500.000 / ekor</p>
+          <h4>Entok Siap Produksi (Induk)</h4><p>Rp 450.000 / ekor</p>
+          </div>
+        <div class="card"><h4>Paket Ternak Siap Prpduksi</h4><p>Rp 2.200.000</p></div>
+    </div>
+</section>
+
+<section>
+    <div class="grid">
+        <div class="stat"><h2 data-target="150">0</h2><p>Populasi/Stok</p></div>
+        <div class="stat"><h2 data-target="1">0</h2><p>Tahun</p></div>
+        <div class="stat"><h2 data-target="20">0</h2><p>Pelanggan</p></div>
+    </div>
+</section>
+
+<section id="galeri" class="reveal">
+    <div class="section-title"><h3>Galeri</h3></div>
+<div class="grid gallery">
+<img src="/Entok/anakan.png" onclick="openLightbox(this.src)">
+<img src="/Entok/biang_5_bulan.png" onclick="openLightbox(this.src)">
+<img src="/Entok/jago_5_bulan.png" onclick="openLightbox(this.src)">
+</div>
+</section>
+
+<div style="text-align:center;margin-top:30px;">
+<a href="https://maps.app.goo.gl/HJ8auxP9zWsyS3aB8" target="_blank" class="map-btn">
+📍 Lokasi/Rute ke Kandang
+</a>
+</div>
+
+<section id="order" class="contact">
+    <div class="section-title"><h3>Order via WhatsApp</h3></div>
+    <form onsubmit="return orderWA()">
+        <input id="nama" required placeholder="Nama Pemesan">
+
+<select id="produkSelect" onchange="hitungHarga()" required>
+<option value="">-- Pilih Produk --</option>
+<option value="Entok Konsumsi">Entok Konsumsi</option>
+<option value="Bibit 1 Minggu">Entok Bibit (1 Minggu)</option>
+<option value="Bibit 1 Bulan">Entok Bibit (1 Bulan)</option>
+<option value="Jago Produksi">Entok Siap Produksi (Jago)</option>
+<option value="Induk Produksi">Entok Siap Produksi (Induk)</option>
+<option value="Paket Ternak">Paket Ternak Siap Produksi</option>
+</select>
+
+        <input id="jumlah" type="number" min="1" value="1" oninput="hitungHarga()">
+        <input id="total" readonly placeholder="Total Harga">
+        <textarea id="catatan" rows="3" placeholder="Catatan (opsional)"></textarea>
+
+        <button>Order via WhatsApp</button>
+    </form>
+</section>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
+</div>
+<footer>
+© 2026 Kandang Bambu Kuning — Anwarul Bashiroh
+</footer>
+
+<a href="https://wa.me/6285159255988" target="_blank" class="wa-float">💬</a>
+
+<script>
+function toggleMenu(){
+    document.getElementById('menu').classList.toggle('active');
+}
+
+const hargaProduk={
+   "Entok Konsumsi": 250000,
+        "Bibit 1 Minggu": 20000,
+        "Bibit 1 Bulan": 75000,
+        "Jago Produksi": 500000,
+        "Induk Produksi": 450000,
+        "Paket Ternak": 12000000
+    };
+
+function hitungHarga(){
+    const produk=document.getElementById("produkSelect").value;
+    const jumlah=document.getElementById("jumlah").value || 1;
+    const total=document.getElementById("total");
+    if(!produk){total.value="";return}
+    total.value="Rp "+(hargaProduk[produk]*jumlah).toLocaleString("id-ID");
+}
+
+function orderWA(){
+    const nama=document.getElementById("nama").value;
+    const produk=document.getElementById("produkSelect").value;
+    const jumlah=document.getElementById("jumlah").value;
+    const total=document.getElementById("total").value;
+    const catatan=document.getElementById("catatan").value || "-";
+    const phone="6285159255988"; //
+
+    const pesan=`Halo Admin Kandang Bambu Kuning 👋
+Nama: ${nama}
+Produk: ${produk}
+Jumlah: ${jumlah}
+Total: ${total}
+Catatan: ${catatan}`;
+
+    window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(pesan),"_blank");
+    return false;
+}
+
+/* Counter */
+const counters=document.querySelectorAll('[data-target]');
+const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            let val=0;
+            const el=entry.target;
+            const target=+el.dataset.target;
+            const inc=target/80;
+            const run=setInterval(()=>{
+                val+=inc;
+                if(val>=target){
+                    el.textContent=target;
+                    clearInterval(run);
+                }else el.textContent=Math.floor(val);
+            },30);
+            observer.unobserve(el);
+        }
+    });
+},{threshold:.5});
+counters.forEach(c=>observer.observe(c));
+/* ANIMASI SCROLL SECTION */
+const reveals=document.querySelectorAll('.reveal');
+
+function revealOnScroll(){
+const windowHeight=window.innerHeight;
+
+reveals.forEach(el=>{
+const elementTop=el.getBoundingClientRect().top;
+
+if(elementTop < windowHeight-80){
+el.classList.add('active');
+}
+});
+}
+
+window.addEventListener('scroll',revealOnScroll);
+
+/* LIGHTBOX GALERI */
+function openLightbox(src){
+document.getElementById("lightbox").classList.add("show");
+document.getElementById("lightbox-img").src=src;
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").classList.remove("show");
+}
+</script>
+
+</body>
+</html>
